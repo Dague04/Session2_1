@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/HTML; charset=iso-8859-1" />
+<title>List Items</title>
+<script type="text/javaScript">
+
+	function moveToRightOrLeft(side){
+		var Left_side=document.getElementById('selectLeft');
+		var Right_side=document.getElementById('selectRight');
+
+		if(side==1){
+			if(Left_side.options.length==0){
+				
+				return false;
+			}else{
+				var selectedCountry=Left_side.options.selectedIndex;
+
+				move(Right_side,Left_side.options[selectedCountry].value, Left_side.options[selectedCountry].text);
+				Left_side.remove(selectedCountry);
+
+			if(Left_side.options.length>0){
+			Left_side.options[0].selected=true;
+			}
+		  }
+        }else if(side==2){
+			if(Right_side.options.length==0){
+				
+			return false;
+		}else{
+			var selectedCountry=Right_side.options.selectedIndex;
+
+			move(Left_side,Right_side.options[selectedCountry].value, Right_side.options[selectedCountry].text);
+			Right_side.remove(selectedCountry);
+
+			if(Right_side.options.length>0){
+				Right_side.options[0].selected=true;
+			}
+		}
+		}
+	}
+
+		function move(listBoxTo,optionValue,optionDisplayText){
+        	var newOption = document.createElement("option");
+			newOption.value = optionValue;
+			newOption.text = optionDisplayText;
+			listBoxTo.add(newOption, null);
+			return true;
+		}
+</script>
+</head>
+
+<body>
+	<div>
+		<ul>
+			<li><table border="0">
+				<tr>
+					<td colspan="4">Example :</td>
+				</tr>
+				<tr>
+					<td colspan="2">Names  </td>
+					<td colspan="2">Your Selection </td>
+				</tr>
+				<tr>
+					<td rowspan="3" align="right">
+					<label>
+						<select name="selectLeft" size="10" id="selectLeft">
+							<option value="opt1" selected="selected">America</option>
+							<option value="opt2">Davis</option>
+							<option value="opt3">David</option>
+							<option value="opt4">Angela</option>
+							<option value="opt5">Joseph</option>
+							<option value="opt6">Melanie</option>
+							<option value="opt7">Lucille</option>
+							<option value="opt8">Annie</option>
+							<option value="opt9">Sia</option>
+							<option value="opt10">Alexis</option>
+							<option value="opt11">Brandon</option>
+						</select>
+					</label>
+					</td>
+					<td align="left">&nbsp;</td>
+					<td align="left">&nbsp;</td>
+					<td rowspan="3" align="left">
+						<select name="selectRight" size="10" id="selectRight">
+							<option value="AF" selected="selected">Clara</option>
+							<option value="AX">&Atilde;&hellip;Lara</option>
+							<option value="AL">Stephanie</option>
+							<option value="DZ">Erica</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="left">&nbsp;</td>
+					<td align="left">
+						<label>
+							<input name="btnRight" type="button" id="btnRight" value=">>" onClick="javaScript:moveToRightOrLeft(1);">
+						</label>
+				   </td>
+				</tr>
+				<tr>
+					<td align="left">&nbsp;</td>
+					<td align="left">
+						<label>
+							<input name="btnLeft" type="button" id="btnLeft" value="<<" onClick="javaScript:moveToRightOrLeft(2);">
+						</label></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td align="left">&nbsp;</td>
+					<td align="left">&nbsp;</td>
+					<td align="left">&nbsp;</td>
+				</tr>
+				</table>
+			</li>
+
+		</ul>
+	</div>
+</body>
+</HTML>
